@@ -14,10 +14,32 @@ services:
             OPENHAB_HTTP_PORT: 8080
             OPENHAB_HTTPS_PORT: 8443
             EXTRA_JAVA_OPTS: -Duser.timezone=Europe/Moscow
+    mariadb:
+        image: mariadb:10.4.12
+        command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+        restart: always
+        volumes:
+            - ./data/mariadb:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD:
+            - MYSQL_PASSWORD:
+            - MYSQL_DATABASE: nextcloud
+            - MYSQL_USER: nextcloud
+        networks:
+            - backend
     nextcloud:
         image: nextcloud:18.0.0-apache
         restart: always
         ports: 
             - 8081:80
         volumes:
-            - ./data/nextcloud/:/var/www/html
+            - ./data/nextcloud:/var/www/html
+        environment:
+            - MYSQL_DATABASE: nextcloud
+            - MYSQL_USER: nextcloud
+            - MYSQL_PASSWORD:
+            - MYSQL_HOST: mariadb
+        networks:
+            - backend
+networks:
+    backend:
