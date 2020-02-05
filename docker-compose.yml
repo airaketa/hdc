@@ -20,11 +20,9 @@ services:
         restart: always
         volumes:
             - ./data/mariadb:/var/lib/mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD:
-            - MYSQL_PASSWORD:
-            - MYSQL_DATABASE: nextcloud
-            - MYSQL_USER: nextcloud
+        env_file:
+            - ./mariadb.env
+            - ./nextcloud.env
         networks:
             - backend
     nextcloud:
@@ -35,10 +33,9 @@ services:
         volumes:
             - ./data/nextcloud:/var/www/html
         environment:
-            - MYSQL_DATABASE: nextcloud
-            - MYSQL_USER: nextcloud
-            - MYSQL_PASSWORD:
-            - MYSQL_HOST: mariadb
+            MYSQL_HOST: mariadb
+        env_file:
+            - ./nextcloud.env
         networks:
             - backend
 networks:
