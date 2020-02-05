@@ -29,7 +29,7 @@ services:
         ports: 
             - 8081:80
         volumes:
-            - ./data/nextcloud:/var/www/html
+            - /mnt/raid1/nextcloud:/var/www/html
         environment:
             POSTGRES_HOST: postgres
         env_file:
