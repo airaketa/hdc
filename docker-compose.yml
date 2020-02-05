@@ -14,15 +14,13 @@ services:
             OPENHAB_HTTP_PORT: 8080
             OPENHAB_HTTPS_PORT: 8443
             EXTRA_JAVA_OPTS: -Duser.timezone=Europe/Moscow
-    mariadb:
-        image: mariadb:10.4.12
-        command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    postgres:
+        image: postgres:9.6.16
         restart: always
         volumes:
-            - ./data/mariadb:/var/lib/mysql
+            - ./data/postgres:/var/lib/postgresql/data
         env_file:
-            - ./mariadb.env
-            - ./nextcloud.env
+            - ./db.env
         networks:
             - backend
     nextcloud:
@@ -33,9 +31,9 @@ services:
         volumes:
             - ./data/nextcloud:/var/www/html
         environment:
-            MYSQL_HOST: mariadb
+            POSTGRES_HOST: postgres
         env_file:
-            - ./nextcloud.env
+            - ./db.env
         networks:
             - backend
 networks:
