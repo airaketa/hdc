@@ -24,7 +24,7 @@ services:
         networks:
             - backend
     nextcloud:
-        image: nextcloud:18.0.2-apache
+        image: nextcloud:19.0.0-apache
         container_name: nextcloud
         restart: always
         volumes:
