@@ -32,6 +32,7 @@ services:
             - postgres
         environment:
             POSTGRES_HOST: postgres
+            OVERWRITEWEBROOT: /nextcloud
         env_file:
             - ./db.env
         networks:
