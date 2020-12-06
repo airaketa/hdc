@@ -1,19 +1,5 @@
 version: '3'
 services:
-#    openhab:
-#        image: openhab/openhab:2.5.1
-#        restart: always
-#        #network_mode: host
-#        volumes:
-#            - /etc/localtime:/etc/localtime:ro
-#            - /etc/timezone:/etc/timezone:ro
-#            - ./config/openhab/addons:/openhab/addons
-#            - ./data/openhab/openhab_conf:/openhab/conf
-#            - ./data/openhab/userdata:/openhab/userdata
-#        environment:
-#            #OPENHAB_HTTP_PORT: 8080
-#            #OPENHAB_HTTPS_PORT: 8443
-#            EXTRA_JAVA_OPTS: -Duser.timezone=Europe/Moscow
     postgres:
         image: postgres:9.6.16
         restart: always
@@ -38,17 +24,28 @@ services:
         networks:
             - backend
             - frontend
+    homeassistant:
+        image: homeassistant/home-assistant:0.118.5
+        restart: always
+        volumes:
+          - ./home-assistant:/config
+        environment:
+          - TZ=Europe/Moscow
+        networks:
+          - frontend
     nginx:
         image: nginx:1.19.4-alpine
         restart: always
         ports:
             - 80:80
             - 443:443
+            - 8080:8080
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
             - ./nginx/certificates:/mycerts
         depends_on:
             - nextcloud
+            - homeassistant
         networks:
             - frontend
 networks:
