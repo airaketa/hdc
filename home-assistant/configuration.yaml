@@ -10,3 +10,14 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+# Yandex Station integration
+yandex_station:
+  username: !secret yandex_user
+  password: !secret yandex_password
+
+# Yandex custom icons
+lovelace:
+  resources:
+    - url: /hacsfiles/ha-yandex-icons/yandex-icons.js
+      type: module
