@@ -8,6 +8,7 @@ homeassistant:
   external_url: !secret general_external_url
   internal_url: !secret general_internal_url
   legacy_templates: false
+  packages: !include_dir_named config
 
 # Text to speech
 tts:
@@ -17,8 +18,6 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-
-!include yandex.yaml
 
 # Xiaomi Roborock Sweep one
 vacuum:
