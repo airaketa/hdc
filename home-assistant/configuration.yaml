@@ -1,6 +1,13 @@
-
-# Configure a default setup of Home Assistant (frontend, api, etc)
-default_config:
+homeassistant:
+  name: Home
+  latitude: !secret general_latitude
+  longitude: !secret general_longitude
+  elevation: !secret general_elevation
+  unit_system: metric
+  time_zone: !secret general_time_zone
+  external_url: !secret general_external_url
+  internal_url: !secret general_internal_url
+  legacy_templates: false
 
 # Text to speech
 tts:
@@ -11,10 +18,14 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-# Yandex Station integration
+# Yandex Station
 yandex_station:
   username: !secret yandex_user
   password: !secret yandex_password
+
+# Yandex dialogs
+yandex_dialogs:
+  name: Дом
 
 # Xiaomi Roborock Sweep one
 vacuum:
