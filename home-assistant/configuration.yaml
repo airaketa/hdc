@@ -16,8 +16,9 @@ yandex_station:
   username: !secret yandex_user
   password: !secret yandex_password
 
-# Yandex custom icons
 lovelace:
+  mode: yaml
   resources:
+    # Yandex Icons
     - url: /hacsfiles/ha-yandex-icons/yandex-icons.js
       type: module
