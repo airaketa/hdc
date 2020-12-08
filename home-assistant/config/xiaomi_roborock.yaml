@@ -1,0 +1,16 @@
+# Xiaomi Roborock Sweep one
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret xiaomi_vacuum_host
+    token: !secret xiaomi_vacuum_token
+
+#Xiaomi Cloud map extractor
+camera:
+  - platform: xiaomi_cloud_map_extractor
+    host: !secret xiaomi_vacuum_host
+    token: !secret xiaomi_vacuum_token
+    username: !secret xiaomi_cloud_user
+    password: !secret xiaomi_cloud_password
+    draw: ['all']
+    attributes:
+      - calibration_points 

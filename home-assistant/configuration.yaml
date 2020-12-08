@@ -19,12 +19,6 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-# Xiaomi Roborock Sweep one
-vacuum:
-  - platform: xiaomi_miio
-    host: !secret roborock_host
-    token: !secret roborock_token
-
 lovelace:
   mode: yaml
   resources:
