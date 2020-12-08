@@ -16,6 +16,12 @@ yandex_station:
   username: !secret yandex_user
   password: !secret yandex_password
 
+# Xiaomi Roborock Sweep one
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret roborock_host
+    token: !secret roborock_token
+
 lovelace:
   mode: yaml
   resources:
