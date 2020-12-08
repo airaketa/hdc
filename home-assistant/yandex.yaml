@@ -1,0 +1,26 @@
+# Yandex Station
+yandex_station:
+  username: !secret yandex_user
+  password: !secret yandex_password
+
+# Yandex dialogs
+yandex_dialogs:
+  name: Дом
+  allowed_user_ids:
+  - !secret yandex_dialogs_user_id
+
+
+intent_script:
+  yandex_default:  # это скрипт по умолчанию
+    action:  # действие опционально и должно уложиться в пару секунд
+    - service: persistent_notification.create
+      data:
+        title: Команда из Яндекса
+        message: "{{ text }}"
+    speech:  # фраза для ответа, поддерживает шаблоны
+      text: >-
+        {% if text == 'привет' %}
+          {{ ['слушаю', 'здесь я', 'на связи']|random }}
+        {% else %}
+          Не могу выполнить: {{ text }}
+        {% endif %}

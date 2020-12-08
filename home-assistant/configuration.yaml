@@ -18,14 +18,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-# Yandex Station
-yandex_station:
-  username: !secret yandex_user
-  password: !secret yandex_password
-
-# Yandex dialogs
-yandex_dialogs:
-  name: Дом
+!include yandex.yaml
 
 # Xiaomi Roborock Sweep one
 vacuum:
