@@ -26,5 +26,5 @@ lovelace:
     - url: /hacsfiles/ha-yandex-icons/yandex-icons.js
       type: module
     # Xiaomi vacuum map
-    - url: /local/custom_lovelace/xiaomi_vacuum_map_card/xiaomi-vacuum-map-card.js
+    - url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
       type: module

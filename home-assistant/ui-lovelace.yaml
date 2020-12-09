@@ -6,23 +6,25 @@ views:
       - entity: binary_sensor.updater
       - entity: person.airaketa
     cards:
-      - type: entities
-        entities:
-          - sensor.hacs
-        title: Кабинет
-      - type: picture-entity
-        entity: camera.xiaomi_cloud_map_extractor
-      - type: media-control
-        entity: media_player.yandex_station_ff98f029ecd40aa69a27f279
-      - type: entities
-        entities:
-          - vacuum.xiaomi_vacuum_cleaner
-        title: Vacuum
-      - type: weather-forecast
-        entity: weather.home_assistant
-        show_forecast: false
-      - type: custom:xiaomi-vacuum-map-card
-        entity: vacuum.xiaomi_vacuum_cleaner
-        camera_calibration: true
-        map_camera: camera.xiaomi_cloud_map_extractor
-        language: ru
+      - type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+            - sensor.hacs
+          title: Кабинет
+        - type: media-control
+          entity: media_player.yandex_station_ff98f029ecd40aa69a27f279
+        - type: entities
+          entities:
+            - vacuum.xiaomi_vacuum_cleaner
+          title: Vacuum
+        - type: weather-forecast
+          entity: weather.home_assistant
+          show_forecast: false
+        - type: picture-entity
+          entity: camera.xiaomi_cloud_map_extractor
+        - type: custom:xiaomi-vacuum-map-card
+          entity: vacuum.xiaomi_vacuum_cleaner
+          camera_calibration: true
+          map_camera: camera.xiaomi_cloud_map_extractor
+          language: ru
