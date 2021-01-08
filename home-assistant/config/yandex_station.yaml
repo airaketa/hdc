@@ -9,7 +9,6 @@ yandex_dialogs:
   allowed_user_ids:
   - !secret yandex_dialogs_user_id
 
-
 intent_script:
   yandex_default:  # это скрипт по умолчанию
     action:  # действие опционально и должно уложиться в пару секунд
@@ -24,3 +23,89 @@ intent_script:
         {% else %}
           Не могу выполнить: {{ text }}
         {% endif %}
+  light_on:
+    action:
+    - service: switch.turn_on
+      data:
+        entity_id: >-
+          {% if room == 'в прихожей' %}
+            switch.light_hallway
+          {% elif room == 'в ванной' %}
+            switch.light_bathroom
+          {% elif room == 'в спальне' %}
+            switch.light_bedroom
+          {% elif room == 'в кабинете' %}
+            switch.light_cabinet
+          {% elif room == 'в зале' %}
+            switch.light_living_room
+          {% elif room == 'на кухне' %}
+            switch.light_kitchen
+          {% else %}
+            group.light
+          {% endif %}
+    speech:
+      text: Включаю свет {{ room }}
+  light_off:
+    action:
+    - service: switch.turn_off
+      data:
+        entity_id: >-
+          {% if room == 'в прихожей' %}
+            switch.light_hallway
+          {% elif room == 'в ванной' %}
+            switch.light_bathroom
+          {% elif room == 'в спальне' %}
+            switch.light_bedroom
+          {% elif room == 'в кабинете' %}
+            switch.light_cabinet
+          {% elif room == 'в зале' %}
+            switch.light_living_room
+          {% elif room == 'на кухне' %}
+            switch.light_kitchen
+          {% else %}
+            group.light
+          {% endif %}
+    speech:
+      text: Выключаю свет {{ room }}
+  fan_on:
+    action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.fan_bathroom
+    speech:
+      text: Включаю вытяжку в ванной
+  fan_off:
+    action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.fan_bathroom
+    speech:
+      text: Выключаю вытяжку в ванной
+  owner_arrive:
+    action:
+    - service: switch.turn_off
+      data:
+        entity_id: group.light
+    - service: switch.turn_on
+      data:
+        entity_id: group.light_owner_arrive
+    speech:
+      text: Приветствую
+  owner_leave:
+    action:
+    - service: switch.turn_off
+      data:
+        entity_id: group.light
+    - service: switch.turn_on
+      data:
+        entity_id: >-
+          {% if cat != 'с котом' %}
+            switch.light_hallway
+          {% endif %}
+    speech:
+      text: >-
+          {% if cat != 'с котом' %}
+            Оставляю свет для Плутона
+          {% else %}
+            До скорой встречи
+          {% endif %}

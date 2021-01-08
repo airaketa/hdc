@@ -1,0 +1,14 @@
+light:
+  name: Light
+  entities:
+    - switch.light_bathroom
+    - switch.light_bedroom
+    - switch.light_cabinet
+    - switch.light_hallway
+    - switch.light_kitchen
+    - switch.light_living_room
+light_owner_arrive:
+  name: Light when owner arrive
+  entities:
+    - switch.light_cabinet
+    - switch.light_kitchen
