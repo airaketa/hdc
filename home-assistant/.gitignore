@@ -1,2 +1,4 @@
 secrets.yaml
 *.js.gz
+.yandex_station.json
+*.log
