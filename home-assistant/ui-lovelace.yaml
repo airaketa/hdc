@@ -28,3 +28,13 @@ views:
           camera_calibration: true
           map_camera: camera.xiaomi_cloud_map_extractor
           language: ru
+        - type: entities
+          entities:
+            - switch.light_hallway
+            - switch.light_bathroom
+            - switch.fan_bathroom
+            - switch.light_kitchen
+            - switch.light_living_room
+            - switch.light_bedroom
+            - switch.light_cabinet
+          title: Освещение
